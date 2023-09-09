@@ -17,3 +17,5 @@ text_res=$(curl -H "apikey:***REMOVED***" --form "file=@ocr.png" --form "languag
 
 # parses json response and puts in paste buffer
 echo ${text_res} | jq -r '.ParsedResults[0].TextOverlay.Lines[].Words[].WordText' | tr '\n' ' ' | xclip -selection clipboard
+
+notify-send -t 2000 "ss2txt" "Finished!"
