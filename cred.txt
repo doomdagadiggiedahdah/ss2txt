@@ -1,2 +1,0 @@
-OCR_API_KEY="***REMOVED***"
-
