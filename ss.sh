@@ -7,13 +7,13 @@
 # 1. happens, and 2. is saved to a file (for the `curl` function to know what it's sending).
 # Enjoy.
 
-
+source /home/mat/Documents/ProgramExperiments/ss2txt/cred.txt
 
 # takes the screenshot
 gnome-screenshot -a -f "ocr.png"
 
 # sends to API
-text_res=$(curl -H "apikey:***REMOVED***" --form "file=@ocr.png" --form "language=eng" --form "isOverlayRequired=true" https://api.ocr.space/Parse/Image)
+text_res=$(curl -H "apikey:$OCR_API_KEY" --form "file=@ocr.png" --form "language=eng" --form "isOverlayRequired=true" https://api.ocr.space/Parse/Image)
 
 # parses json response and puts in paste buffer
 echo ${text_res} | jq -r '.ParsedResults[0].TextOverlay.Lines[].Words[].WordText' | tr '\n' ' ' | xclip -selection clipboard
